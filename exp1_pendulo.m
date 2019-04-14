@@ -24,7 +24,14 @@ p_ma=eig(A0)
 sys=ss(A0,B0,eye(4),0); %dx=Ax+Bu // y=x
 figure(1)
 subplot(1,2,1)
-plotPole(p_ma)
+for j=1:length(p_ma)
+    if (real(p_ma(j))<0)
+        plot(real(p_ma(j)),imag(p_ma(j)),'*g')
+    else
+        plot(real(p_ma(j)),imag(p_ma(j)),'*r')
+    end
+    hold on
+end
 subplot(1,2,2)
 [y,t]=impulse(sys);
 plot(t,y,'b')
@@ -46,7 +53,14 @@ for m=0.5:0.01:0.6
     figure(2)
     subplot(1,2,1)
     hold on
-    plotPole(p_mf)
+  for j=1:length(p_mf)
+    if (real(p_mf(j))<0)
+        plot(real(p_mf(j)),imag(p_mf(j)),'*g')
+    else
+        plot(real(p_mf(j)),imag(p_mf(j)),'*r')
+    end
+    hold on
+end
     grid on
     hold off
     subplot(1,2,2)
